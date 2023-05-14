@@ -21,7 +21,7 @@ client.connect(err=>{
 
 // console.log(client)
 
-app.get('/', (req, res) => {        
+app.get('/home', (req, res) => {        
     res.send("user");      
 });
 
