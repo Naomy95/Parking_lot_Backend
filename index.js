@@ -35,13 +35,10 @@ async function run() {
         const hostCollection = database.collection('hosts');
         const seatCollection = database.collection('Seats');
     
-    app.get('/user/:email', async (req, res) => {
+    app.get('/user', async (req, res) => {
         
-        const email = req.params.email;
-        const query = { email:email };
-        const user = await userCollection.findOne(query);
-        console.log(email)
-        res.send(user)
+       
+        res.send("user")
        
     })
     app.put('/user/:email', async (req, res) => {
