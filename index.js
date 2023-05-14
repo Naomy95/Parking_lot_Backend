@@ -108,7 +108,7 @@ async function run() {
     })
  
 
-    app.get('/users', async (req, res) => {
+    app.get('/', async (req, res) => {
         const cursor = usersCollection.find({});
         const users = await cursor.toArray();
         res.send(users);
