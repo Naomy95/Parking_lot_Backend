@@ -14,8 +14,6 @@ const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-
-
 console.log(client)
 
 app.get('/home', (req, res) => {        
