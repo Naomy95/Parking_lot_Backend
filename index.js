@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();  
+require('dotenv').config();
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
@@ -9,7 +10,7 @@ const port= 5000
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb+srv://parking-lot:zMRSytRoK1wKcGRr@cluster0.kvzsn.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.kvzsn.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
@@ -87,6 +88,16 @@ async function run() {
         res.send(user)
        
     });
+    app.delete('/seats/:id', async (req, res) => {
+        const id = req.params.id;
+        console.log(id);
+        const query = { _id:new ObjectId(id) };
+        console.log(query);
+        const result = await seatCollection.deleteOne(query);
+        console.log(result);
+        res.json(result);
+    })
+
 
     app.put('/locations/:name', async (req, res) => {
         const location = req.body;
